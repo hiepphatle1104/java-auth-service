@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: root
+    password: admin
+    url: jdbc:h2:mem:swappie_db
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      repositories:
+        enabled: true
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

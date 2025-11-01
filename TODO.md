@@ -1,0 +1,6 @@
+- [x] Generate access and refresh token in signin route
+- [x] Add refresh token to cookie
+- [x] Return access token in json
+- [ ] Setup role for user
+- [ ] Customize authorize filter
+- [ ] Implement oauth flow to get token instead of provide in sign in route

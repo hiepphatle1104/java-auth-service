@@ -1,20 +1,22 @@
 package com.swappie.service;
 
-import com.swappie.domain.entities.User;
+import com.swappie.dto.UserDTO;
+import com.swappie.dto.UserRegisterDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public interface UserService {
-    String createUser(User user);
+    UUID createUser(UserRegisterDTO request);
 
-    User getUserById(String id);
+    UserDTO getUserById(UUID id);
 
     // Admin only
-    List<User> getAllUsers();
+    List<UserDTO> getAllUsers();
 
-    void deleteUserById(String id);
+    void deleteUserById(UUID id);
 
-    void updateUserById(User user);
+    void updateUserById(UUID id, UserDTO userDto);
 }

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Service
 public interface UserService {
-    UUID createUser(UserRegisterDTO request);
+    UUID createUser(UserRegisterDTO dto);
 
     UserDTO getUserById(UUID id);
 
@@ -18,5 +18,5 @@ public interface UserService {
 
     void deleteUserById(UUID id);
 
-    void updateUserById(UUID id, UserDTO userDto);
+    void updateUserById(UUID id, UserDTO dto);
 }

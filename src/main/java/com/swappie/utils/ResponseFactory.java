@@ -43,4 +43,8 @@ public class ResponseFactory {
     public static <T> Response<T> internalError(String message) {
         return base(message, HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR", null);
     }
+
+    public static <T> Response<T> unauthorized(String message, String errorCode) {
+        return base(message, HttpStatus.UNAUTHORIZED, errorCode, null);
+    }
 }

@@ -1,11 +1,12 @@
 package com.swappie.controller;
 
+import com.swappie.domain.ApiUserDetails;
 import com.swappie.dto.ProductDTO;
-import com.swappie.mapper.ProductMapper;
 import com.swappie.service.ProductService;
 import com.swappie.utils.ResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -15,7 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
-    private final ProductMapper mapper;
 
     @GetMapping
     public ResponseEntity<?> getAllProducts() {
@@ -34,8 +34,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProduct(@RequestBody ProductDTO request) {
-        var productId = productService.createProduct(mapper.toEntity(request));
+    public ResponseEntity<?> createProduct(@RequestBody ProductDTO dto) {
+        var userDetails = (ApiUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        var productId = productService.createProduct(dto, userDetails.getUser());
 
         var res = ResponseFactory.created("product created", productId);
         return new ResponseEntity<>(res, res.getStatus());
@@ -50,8 +52,8 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable UUID id, @RequestBody ProductDTO request) {
-        productService.updateProduct(id, request);
+    public ResponseEntity<?> updateProduct(@PathVariable UUID id, @RequestBody ProductDTO dto) {
+        productService.updateProduct(id, dto);
 
         var res = ResponseFactory.ok("product updated");
         return new ResponseEntity<>(res, res.getStatus());

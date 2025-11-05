@@ -1,0 +1,25 @@
+{
+  "name": "Panasonic EV Battery Pack",
+  "description": "Pin lithium-ion dành cho xe điện, dung lượng cao, còn rất mới.",
+  "price": 1200.0,
+  "currency": "USD",
+  "status": "AVAILABLE",
+  "category": "BATTERY",
+  "images": [
+    {
+      "alt": "Battery pack front",
+      "url": "https://example.com/images/battery-front.jpg"
+    },
+    {
+      "alt": "Battery pack side view",
+      "url": "https://example.com/images/battery-side.jpg"
+    }
+  ],
+  "battery_spec": {
+    "brand": "Panasonic",
+    "capacity": 85000,
+    "health": 98,
+    "voltage": 400,
+    "battery_condition": "USED"
+  }
+}

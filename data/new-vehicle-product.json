@@ -1,0 +1,27 @@
+{
+  "name": "Porsche Taycan 4S",
+  "description": "Xe điện thể thao hiệu suất cao, màu trắng, tình trạng còn rất tốt.",
+  "price": 165000.0,
+  "currency": "USD",
+  "status": "AVAILABLE",
+  "category": "VEHICLE",
+  "images": [
+    {
+      "alt": "Porsche Taycan front view",
+      "url": "https://example.com/images/taycan-front.jpg"
+    },
+    {
+      "alt": "Porsche Taycan interior",
+      "url": "https://example.com/images/taycan-interior.jpg"
+    }
+  ],
+  "vehicle_spec": {
+    "brand": "Porsche",
+    "model": "Taycan 4S",
+    "manufacture_year": 2023,
+    "color": "White",
+    "odometer": 8500,
+    "battery_health": 95,
+    "vehicle_condition": "USED"
+  }
+}

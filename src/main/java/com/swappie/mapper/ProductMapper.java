@@ -16,6 +16,7 @@ public interface ProductMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "user", ignore = true)
     @Mapping(target = "images", source = "images")
     @Mapping(target = "vehicleSpec", source = "vehicleSpec")
     @Mapping(target = "batterySpec", source = "batterySpec")

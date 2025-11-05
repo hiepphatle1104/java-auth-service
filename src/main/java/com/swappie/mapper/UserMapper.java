@@ -13,6 +13,7 @@ public interface UserMapper {
     @Mapping(target = "products", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "sessions", ignore = true)
     User toEntity(UserRegisterDTO request);
 
     UserDTO toDTO(User user);

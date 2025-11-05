@@ -1,6 +1,6 @@
 package com.swappie.service;
 
-import com.swappie.domain.entities.Product;
+import com.swappie.domain.entities.User;
 import com.swappie.dto.ProductDTO;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Service
 public interface ProductService {
-    UUID createProduct(Product product);
+    UUID createProduct(ProductDTO dto, User user);
 
     List<ProductDTO> getAllProducts();
 

@@ -8,6 +8,7 @@ import com.swappie.mapper.UserMapper;
 import com.swappie.repository.UserRepository;
 import com.swappie.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +20,14 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     private final UserRepository repo;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UUID createUser(UserRegisterDTO request) {
-        User saved = repo.save(mapper.toEntity(request));
+    public UUID createUser(UserRegisterDTO dto) {
+        User user = mapper.toEntity(dto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        User saved = repo.save(user);
         return saved.getId();
     }
 

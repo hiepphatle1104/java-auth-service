@@ -1,5 +1,6 @@
 package com.swappie.domain.entities;
 
+import com.swappie.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,11 +23,18 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Session> sessions = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -37,7 +45,7 @@ public class User {
     @PrePersist
     public void onCreate() {
         LocalDateTime now = LocalDateTime.now();
-        this.username = this.email;
+        this.username = "user_" + UUID.randomUUID().toString().replace("-", "").substring(0, 16);
         this.createdAt = now;
         this.updatedAt = now;
     }

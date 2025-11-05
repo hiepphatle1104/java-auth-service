@@ -1,6 +1,7 @@
 package com.swappie.service.impl;
 
 import com.swappie.domain.entities.Product;
+import com.swappie.domain.entities.User;
 import com.swappie.dto.ProductDTO;
 import com.swappie.exception.NotFoundException;
 import com.swappie.mapper.ProductMapper;
@@ -21,9 +22,11 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper mapper;
 
     @Override
-    public UUID createProduct(Product product) {
-        Product saved = repo.save(product);
+    public UUID createProduct(ProductDTO dto, User user) {
+        Product product = mapper.toEntity(dto);
+        product.setUser(user);
 
+        Product saved = repo.save(product);
         return saved.getId();
     }
 

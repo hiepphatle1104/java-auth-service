@@ -6,6 +6,7 @@ import com.swappie.repository.SessionRepository;
 import com.swappie.service.SessionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -49,5 +50,11 @@ public class SessionServiceImpl implements SessionService {
 
         return result.orElse(null);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteSessionByUser(User user) {
+        repo.deleteSessionByUser(user);
     }
 }

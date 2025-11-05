@@ -15,4 +15,6 @@ public interface SessionService {
     void updateSessionById(Session session);
 
     Session getSessionByToken(String token);
+
+    void deleteSessionByUser(User user);
 }

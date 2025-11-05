@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,15 @@ public class AuthController {
         var userId = userService.createUser(dto);
 
         var res = ResponseFactory.created("user created", userId);
+        return new ResponseEntity<>(res, res.getStatus());
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        var userDetails = (ApiUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        sessionService.deleteSessionByUser(userDetails.getUser());
+
+        var res = ResponseFactory.ok("user logged out");
         return new ResponseEntity<>(res, res.getStatus());
     }
 

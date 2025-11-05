@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -25,8 +26,10 @@ public class CustomAuthFilter extends OncePerRequestFilter {
     private final SessionService sessionService;
 
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/api/auth");
+    protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
+        var routes = List.of("/api/auth/login", "/api/auth/register");
+
+        return routes.stream().anyMatch(route -> request.getRequestURI().startsWith(route));
     }
 
     @Override

@@ -30,7 +30,9 @@ public class SecurityConfig {
         http.exceptionHandling(ex -> ex.authenticationEntryPoint(customEntryPoint));
         http.authenticationProvider(customAuthProvider);
         http.authorizeHttpRequests(req -> req
-                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/register").permitAll()
+                .requestMatchers("/api/auth/logout").authenticated()
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
         );

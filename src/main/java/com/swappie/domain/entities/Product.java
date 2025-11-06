@@ -20,8 +20,8 @@ public class Product {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "seller_id", nullable = false)
+    private User seller;
 
     @Column(nullable = false)
     private String name;

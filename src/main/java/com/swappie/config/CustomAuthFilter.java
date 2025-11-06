@@ -27,7 +27,7 @@ public class CustomAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
-        var routes = List.of("/api/auth/login", "/api/auth/register");
+        var routes = List.of("/api/auth/login", "/api/auth/register", "/h2-console");
 
         return routes.stream().anyMatch(route -> request.getRequestURI().startsWith(route));
     }

@@ -2,7 +2,7 @@ package com.swappie.domain.entities;
 
 import com.swappie.domain.enums.Category;
 import com.swappie.domain.enums.Currency;
-import com.swappie.domain.enums.Status;
+import com.swappie.domain.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,10 +35,14 @@ public class Product {
     private Currency currency;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private ProductStatus productStatus;
 
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    // Order
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
 
     // Images
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

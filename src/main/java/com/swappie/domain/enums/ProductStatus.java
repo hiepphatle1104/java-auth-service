@@ -1,6 +1,6 @@
 package com.swappie.domain.enums;
 
-public enum Status {
+public enum ProductStatus {
     AVAILABLE,
     SOLD
 }

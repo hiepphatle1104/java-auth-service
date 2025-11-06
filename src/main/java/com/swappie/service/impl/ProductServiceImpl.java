@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public UUID createProduct(ProductDTO dto, User user) {
         Product product = mapper.toEntity(dto);
-        product.setUser(user);
+        product.setSeller(user);
 
         Product saved = repo.save(product);
         return saved.getId();
